@@ -4,7 +4,7 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # RUN apk add --no-cache bash coreutils
 
-COPY entrypoint.sh /entrypoint.py
+COPY entrypoint.py /entrypoint.py
 COPY post.py /post.py
 
 RUN chmod +x /entrypoint.py /post.py
