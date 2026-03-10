@@ -20,7 +20,7 @@ def main():
         )
     
     restore_keys = []
-    version = hashlib.sha256(key.encode()).hexdigest()
+    version = hashlib.sha256(path.encode()).hexdigest()
     keys = ",".join([key] + restore_keys)
     query = {"keys": keys}
     if version:
