@@ -1,5 +1,6 @@
 FROM python:3.12-slim
 
+COPY src /src
 COPY entrypoint.py /entrypoint.py
 COPY post.py /post.py
 COPY requirements.txt /requirements.txt
