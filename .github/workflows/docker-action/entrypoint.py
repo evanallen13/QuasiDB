@@ -8,11 +8,21 @@ import os
 # import urllib.request
 
 
-token = os.getenv("ACTIONS_RUNTIME_TOKEN")
-cache_url = os.getenv("ACTIONS_CACHE_URL")
-print(f"ACTIONS_RUNTIME_TOKEN: {token}")
-print(f"ACTIONS_CACHE_URL: {cache_url}")
+def main(): 
+    token = os.getenv("ACTIONS_RUNTIME_TOKEN")
+    cache_url = os.getenv("ACTIONS_CACHE_URL")
+    key=os.environ["GITHUB_WORKFLOW"]
+    print(f"ACTIONS_CACHE_URL: {cache_url}")
+    print(f"GITHUB_WORKFLOW: {key}")
 
+    if not token or not cache_url or not key:
+        raise RuntimeError(
+            "Missing ACTIONS_RUNTIME_TOKEN or ACTIONS_CACHE_URL or GITHUB_WORKFLOW. "
+            "This function must run inside a GitHub Actions job."
+        )
+
+if __name__ == "__main__":
+    main()
 
 # def restore_github_actions_cache(
 #     key: str,
