@@ -1,4 +1,4 @@
-name: Generate and Push Database
+name: Database
 
 on:
   workflow_dispatch:
@@ -35,7 +35,7 @@ jobs:
         with:
             key: ${{ github.workflow }}
             path: |
-                ./data/example.db
+                ./data
 
       - name: Install dependencies
         run: pip install -r requirements.txt 
@@ -54,4 +54,4 @@ jobs:
         with:
             key: ${{ github.workflow }}
             path: |
-                ./data/example.db
+                ./data
