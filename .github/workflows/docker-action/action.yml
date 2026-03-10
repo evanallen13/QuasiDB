@@ -1,0 +1,13 @@
+name: Docker Action With Post
+description: Example Docker action that runs a post step.
+author: QuasiDB
+inputs:
+  message:
+    description: Message to print during the main step.
+    required: false
+    default: Running main step
+runs:
+  using: docker
+  image: Dockerfile
+  entrypoint: /entrypoint.sh
+  post-entrypoint: /post.sh
