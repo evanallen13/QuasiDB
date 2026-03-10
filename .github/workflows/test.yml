@@ -1,0 +1,21 @@
+name: Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-db:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      actions: write
+
+    steps:
+
+      - name: Run Docker
+        uses: ./.github/workflows/docker-action
+        with:
+          message: Running main step
