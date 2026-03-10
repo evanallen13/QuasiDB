@@ -7,6 +7,7 @@ def main():
     token = os.getenv("ACTIONS_RUNTIME_TOKEN")
     cache_url = os.getenv("ACTIONS_CACHE_URL")
     key = os.getenv("GITHUB_WORKFLOW")
+    path = os.getenv("CACHE_PATH", "./data")
     print(f"ACTIONS_CACHE_URL: {cache_url}")
     print(f"GITHUB_WORKFLOW: {key}")
     if not token or not cache_url or not key:
@@ -29,20 +30,22 @@ def main():
         + requests.compat.urlencode(query)
     )
 
-    headers = {
-        "Authorization": f"Bearer {token}",
-        "Accept": "application/json;api-version=6.0-preview.1",
-    }
+    print(f"{lookup_url}")
 
-    try:
-        response = requests.get(lookup_url, headers=headers)
-        response.raise_for_status()
-        payload = response.json()
-    except requests.exceptions.HTTPError as e:
-        if e.response.status_code in (204, 404):
-            print("No cache found.")
-            return False
-        raise
+    # headers = {
+    #     "Authorization": f"Bearer {token}",
+    #     "Accept": "application/json;api-version=6.0-preview.1",
+    # }
+
+    # try:
+    #     response = requests.get(lookup_url, headers=headers)
+    #     response.raise_for_status()
+    #     payload = response.json()
+    # except requests.exceptions.HTTPError as e:
+    #     if e.response.status_code in (204, 404):
+    #         print("No cache found.")
+    #         return False
+    #     raise
 
 if __name__ == "__main__":
     main()
