@@ -1,8 +1,10 @@
-FROM alpine:3.20
+FROM mcr.microsoft.com/devcontainers/python:3.12
 
-RUN apk add --no-cache bash coreutils
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
-COPY entrypoint.sh /entrypoint.sh
-COPY post.sh /post.sh
+# RUN apk add --no-cache bash coreutils
 
-RUN chmod +x /entrypoint.sh /post.sh
+COPY entrypoint.sh /entrypoint.py
+COPY post.py /post.py
+
+RUN chmod +x /entrypoint.py /post.py
