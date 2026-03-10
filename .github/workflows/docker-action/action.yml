@@ -6,6 +6,10 @@ inputs:
     description: Message to print during the main step.
     required: false
     default: Running main step
+  key:
+    description: Key to use for caching.
+    required: false
+    default: "DefaultKey"
 runs:
   using: docker
   image: Dockerfile

@@ -6,13 +6,13 @@ import requests
 def main(): 
     token = os.getenv("ACTIONS_RUNTIME_TOKEN")
     cache_url = os.getenv("ACTIONS_CACHE_URL")
-    key = os.getenv("GITHUB_WORKFLOW")
+    key = os.getenv("key")
     path = os.getenv("CACHE_PATH", "./data")
     print(f"ACTIONS_CACHE_URL: {cache_url}")
-    print(f"GITHUB_WORKFLOW: {key}")
+    print(f"Key: {key}")
     if not token or not cache_url or not key:
         raise RuntimeError(
-            "Missing ACTIONS_RUNTIME_TOKEN or ACTIONS_CACHE_URL or GITHUB_WORKFLOW. "
+            "Missing ACTIONS_RUNTIME_TOKEN or ACTIONS_CACHE_URL or key. "
             "This function must run inside a GitHub Actions job."
         )
     
