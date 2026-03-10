@@ -2,9 +2,6 @@ name: Test
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
   test:
@@ -23,7 +20,7 @@ jobs:
           ref: main
           depth: 1
       
-      
+
       - name: Run Docker
         uses: ./.github/workflows/docker-action
         with:
