@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate-db:
+  test:
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.workflow }}

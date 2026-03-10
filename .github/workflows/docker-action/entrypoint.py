@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import hashlib
 import os
-import requests
 import urllib.request
+import json
 
 def main(): 
     token = os.getenv("ACTIONS_RUNTIME_TOKEN")
@@ -38,6 +38,20 @@ def main():
         },
         method="GET",
     )
+
+    try:
+        with urllib.request.urlopen(req) as resp:
+            payload = json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        if e.code in (204, 404):
+            return False
+        raise
+
+    # archive_url = payload.get("archiveLocation") or payload.get("archive_location")
+    # if not archive_url:
+    #     return False
+
+    # os.makedirs(path, exist_ok=True)
 
 if __name__ == "__main__":
     main()
