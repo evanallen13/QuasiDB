@@ -14,7 +14,11 @@ jobs:
       actions: write
 
     steps:
-
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          
       - name: Run Docker
         uses: ./.github/workflows/docker-action
         with:
